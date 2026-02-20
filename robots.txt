@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adinova-labs.github.io/calciverse/sitemap.xml
