@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Loan Calculator 2026 – EMI & Interest Calculator | Calciverse</title>
+<meta name="description" content="Free Loan Calculator 2026. Calculate EMI, total payment and interest instantly for USD, INR, EUR and GBP.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/style.css">
+<script defer src="../js/main.js"></script>
+
+<style>
+.calculator-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+.calculator-box input, .calculator-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="container nav-content">
+        <div class="logo">Calciverse</div>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="index.html">Calculators</a>
+            <a href="../about.html">About</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Loan Calculator</h1>
+        <p>Calculate EMI, total payment and interest instantly.</p>
+    </div>
+</section>
+
+<div class="container" style="margin-top:30px;">
+    <div class="ad-placeholder">
+        Advertisement
+    </div>
+</div>
+
+<div class="calculator-box">
+    <label>Currency</label>
+    <select id="loanCurrency">
+        <option value="$">$ USD</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+        <option value="₹">₹ INR</option>
+    </select>
+
+    <label>Loan Amount</label>
+    <input type="number" id="loanAmountInput" placeholder="Enter loan amount">
+
+    <label>Annual Interest Rate (%)</label>
+    <input type="number" id="loanInterestRate" placeholder="Enter annual interest rate">
+
+    <label>Loan Term (Years)</label>
+    <input type="number" id="loanYearsInput" placeholder="Enter loan term in years">
+
+    <button class="btn-primary" onclick="calculateLoan()">Calculate</button>
+
+    <div class="result-box" id="loanResult"></div>
+</div>
+
+<section class="seo-content">
+    <div class="container">
+        <h2>How Loan EMI Is Calculated</h2>
+        <p>This loan calculator uses the standard amortization formula to calculate EMI (Equated Monthly Installment) based on loan amount, interest rate and loan term.</p>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Calciverse. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
