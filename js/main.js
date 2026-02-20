@@ -35,3 +35,43 @@ document.getElementById("result").innerHTML =
     "Total Payment: " + currency + formatNumber(totalPayment) + "<br>" +
     "Total Interest: " + currency + formatNumber(totalInterest);
 }
+// Amortization Schedule
+let balance = loanAmount;
+let scheduleHTML = "<h3 style='margin-top:30px;'>Amortization Schedule (Yearly)</h3>";
+scheduleHTML += "<table style='width:100%; margin-top:10px; border-collapse:collapse;'>";
+scheduleHTML += "<tr style='background:#E2E8F0;'>
+<th style='padding:8px; border:1px solid #CBD5E1;'>Year</th>
+<th style='padding:8px; border:1px solid #CBD5E1;'>Principal Paid</th>
+<th style='padding:8px; border:1px solid #CBD5E1;'>Interest Paid</th>
+<th style='padding:8px; border:1px solid #CBD5E1;'>Remaining Balance</th>
+</tr>";
+
+for (let year = 1; year <= years; year++) {
+
+    let yearlyPrincipal = 0;
+    let yearlyInterest = 0;
+
+    for (let month = 1; month <= 12; month++) {
+
+        let interestPayment = balance * monthlyRate;
+        let principalPayment = monthlyPayment - interestPayment;
+
+        yearlyPrincipal += principalPayment;
+        yearlyInterest += interestPayment;
+
+        balance -= principalPayment;
+
+        if (balance < 0) balance = 0;
+    }
+
+    scheduleHTML += "<tr>";
+    scheduleHTML += "<td style='padding:8px; border:1px solid #CBD5E1;'>" + year + "</td>";
+    scheduleHTML += "<td style='padding:8px; border:1px solid #CBD5E1;'>" + currency + formatNumber(yearlyPrincipal) + "</td>";
+    scheduleHTML += "<td style='padding:8px; border:1px solid #CBD5E1;'>" + currency + formatNumber(yearlyInterest) + "</td>";
+    scheduleHTML += "<td style='padding:8px; border:1px solid #CBD5E1;'>" + currency + formatNumber(balance) + "</td>";
+    scheduleHTML += "</tr>";
+}
+
+scheduleHTML += "</table>";
+
+document.getElementById("amortization").innerHTML = scheduleHTML;
