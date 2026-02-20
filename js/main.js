@@ -22,9 +22,16 @@ function calculateMortgage() {
     const totalPayment = monthlyPayment * totalPayments;
     const totalInterest = totalPayment - loanAmount;
 
-    document.getElementById("result").innerHTML =
-        "Loan Amount: " + currency + loanAmount.toFixed(2) + "<br><br>" +
-        "Monthly Payment: " + currency + monthlyPayment.toFixed(2) + "<br>" +
-        "Total Payment: " + currency + totalPayment.toFixed(2) + "<br>" +
-        "Total Interest: " + currency + totalInterest.toFixed(2);
+    const formatNumber = (num) => {
+    return num.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+};
+
+document.getElementById("result").innerHTML =
+    "Loan Amount: " + currency + formatNumber(loanAmount) + "<br><br>" +
+    "Monthly Payment: " + currency + formatNumber(monthlyPayment) + "<br>" +
+    "Total Payment: " + currency + formatNumber(totalPayment) + "<br>" +
+    "Total Interest: " + currency + formatNumber(totalInterest);
 }
