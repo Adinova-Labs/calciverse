@@ -77,3 +77,37 @@ function calculateMortgage() {
 
     document.getElementById("amortization").innerHTML = scheduleHTML;
 }
+function calculateLoan() {
+
+    const currency = document.getElementById("loanCurrency").value;
+    const loan = parseFloat(document.getElementById("loanAmountInput").value);
+    const annualRate = parseFloat(document.getElementById("loanInterestRate").value);
+    const years = parseFloat(document.getElementById("loanYearsInput").value);
+
+    if (!loan || !annualRate || !years) {
+        document.getElementById("loanResult").innerHTML = "Please enter required fields correctly.";
+        return;
+    }
+
+    const monthlyRate = (annualRate / 100) / 12;
+    const totalPayments = years * 12;
+
+    const emi =
+        loan * monthlyRate * Math.pow(1 + monthlyRate, totalPayments) /
+        (Math.pow(1 + monthlyRate, totalPayments) - 1);
+
+    const totalPayment = emi * totalPayments;
+    const totalInterest = totalPayment - loan;
+
+    const formatNumber = (num) => {
+        return num.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    };
+
+    document.getElementById("loanResult").innerHTML =
+        "Monthly EMI: " + currency + formatNumber(emi) + "<br><br>" +
+        "Total Payment: " + currency + formatNumber(totalPayment) + "<br>" +
+        "Total Interest: " + currency + formatNumber(totalInterest);
+}
