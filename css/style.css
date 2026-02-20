@@ -155,9 +155,9 @@ nav a:hover {
     margin-top: 20px;
     padding: 20px;
     background: #ECFDF5;
-    border-left: 5px solid #10B981;
-    border-radius: 6px;
-    font-size: 16px;
+    border-left: 8px solid #10B981;
+    border-radius: 8px;
+    font-size: 17px;
 }
 
 #amortization {
@@ -167,4 +167,12 @@ nav a:hover {
 
 #amortization table {
     font-size: 14px;
+}
+.ad-placeholder {
+    background: #F8FAFC;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px dashed #CBD5E1;
+    color: #64748B;
 }
