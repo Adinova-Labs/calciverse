@@ -5,7 +5,9 @@
 <title>Mortgage Calculator – Monthly Payment Estimator | Calciverse</title>
 <meta name="description" content="Free mortgage calculator to estimate monthly home loan payments. Calculate principal, interest and total payment instantly.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="../css/style.css">
+<script defer src="../js/main.js"></script>
 
 <style>
 .calculator-box {
@@ -13,11 +15,11 @@
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    max-width: 500px;
+    max-width: 600px;
     margin: 40px auto;
 }
 
-.calculator-box input {
+.calculator-box input, .calculator-box select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -27,7 +29,7 @@
 
 .result-box {
     margin-top: 20px;
-    padding: 15px;
+    padding: 20px;
     background: #F1F5F9;
     border-radius: 6px;
     font-weight: bold;
@@ -56,8 +58,18 @@
 </section>
 
 <div class="calculator-box">
-    <label>Loan Amount ($)</label>
-    <input type="number" id="loanAmount" placeholder="Enter loan amount">
+    <label>Currency</label>
+    <select id="currency">
+        <option value="$">$ USD</option>
+        <option value="€">€ EUR</option>
+        <option value="£">£ GBP</option>
+    </select>
+
+    <label>Home Price</label>
+    <input type="number" id="homePrice" placeholder="Enter home price">
+
+    <label>Down Payment</label>
+    <input type="number" id="downPayment" placeholder="Enter down payment">
 
     <label>Annual Interest Rate (%)</label>
     <input type="number" id="interestRate" placeholder="Enter annual interest rate">
@@ -73,7 +85,7 @@
 <section class="seo-content">
     <div class="container">
         <h2>How Mortgage Calculation Works</h2>
-        <p>This mortgage calculator estimates your monthly payment based on loan amount, annual interest rate and loan term. It uses the standard amortization formula to calculate principal and interest payments accurately.</p>
+        <p>This mortgage calculator estimates your monthly payment based on home price, down payment, interest rate and loan term. It uses the standard amortization formula to calculate principal and interest payments accurately.</p>
     </div>
 </section>
 
@@ -87,34 +99,6 @@
         </div>
     </div>
 </footer>
-
-<script>
-function calculateMortgage() {
-    const loan = parseFloat(document.getElementById("loanAmount").value);
-    const annualRate = parseFloat(document.getElementById("interestRate").value);
-    const years = parseFloat(document.getElementById("loanYears").value);
-
-    if (!loan || !annualRate || !years) {
-        document.getElementById("result").innerHTML = "Please enter all fields correctly.";
-        return;
-    }
-
-    const monthlyRate = (annualRate / 100) / 12;
-    const totalPayments = years * 12;
-
-    const monthlyPayment = 
-        loan * monthlyRate * Math.pow(1 + monthlyRate, totalPayments) /
-        (Math.pow(1 + monthlyRate, totalPayments) - 1);
-
-    const totalPayment = monthlyPayment * totalPayments;
-    const totalInterest = totalPayment - loan;
-
-    document.getElementById("result").innerHTML = 
-        "Monthly Payment: $" + monthlyPayment.toFixed(2) + "<br>" +
-        "Total Payment: $" + totalPayment.toFixed(2) + "<br>" +
-        "Total Interest: $" + totalInterest.toFixed(2);
-}
-</script>
 
 </body>
 </html>
