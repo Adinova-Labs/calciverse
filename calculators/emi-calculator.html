@@ -75,6 +75,10 @@
 <div class="result-box" id="result"></div>
 <canvas id="emiChart" style="margin-top:30px;"></canvas>
  <div style="margin-top:40px; overflow-x:auto;">
+  <div style="display:flex; gap:10px; margin-bottom:15px;">
+  <button id="yearlyTab" class="btn-primary" onclick="setScheduleMode('yearly')">Yearly Summary</button>
+  <button id="monthlyTab" class="btn-secondary" onclick="setScheduleMode('monthly')">Monthly Breakdown</button>
+</div>
   <h3>Amortization Schedule</h3>
   <table id="amortTable" style="width:100%; border-collapse:collapse; margin-top:15px;">
     <thead>
