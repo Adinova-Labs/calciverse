@@ -222,6 +222,22 @@ function calculateSIP() {
   });
 }
 let emiChartInstance = null;
+let scheduleMode = "yearly";
+
+function setScheduleMode(mode) {
+  scheduleMode = mode;
+
+  document.getElementById("yearlyTab").classList.remove("active");
+  document.getElementById("monthlyTab").classList.remove("active");
+
+  if (mode === "yearly") {
+    document.getElementById("yearlyTab").classList.add("active");
+  } else {
+    document.getElementById("monthlyTab").classList.add("active");
+  }
+
+  calculateEMI();
+}
 
 function calculateEMI() {
 
@@ -250,7 +266,7 @@ function calculateEMI() {
     "Total Interest: " + currency + totalInterest.toFixed(2) + "<br><br>" +
     "<strong>Total Payment: " + currency + totalPayment.toFixed(2) + "</strong>";
 
-  // Chart Safe Check
+  // Chart
   const chartCanvas = document.getElementById("emiChart");
   if (chartCanvas) {
     const ctx = chartCanvas.getContext("2d");
@@ -271,7 +287,7 @@ function calculateEMI() {
     });
   }
 
-  // Amortization Table Safe Check
+  // Amortization Table
   const table = document.getElementById("amortTable");
   if (!table) return;
 
@@ -286,16 +302,38 @@ function calculateEMI() {
     const principal = emi - interest;
     balance -= principal;
 
-    const row = `
-      <tr>
-        <td>${month}</td>
-        <td>${currency}${emi.toFixed(2)}</td>
-        <td>${currency}${principal.toFixed(2)}</td>
-        <td>${currency}${interest.toFixed(2)}</td>
-        <td>${currency}${balance > 0 ? balance.toFixed(2) : "0.00"}</td>
-      </tr>
-    `;
+    if (scheduleMode === "monthly") {
 
-    tableBody.innerHTML += row;
+      const row = `
+        <tr>
+          <td>${month}</td>
+          <td>${currency}${emi.toFixed(2)}</td>
+          <td>${currency}${principal.toFixed(2)}</td>
+          <td>${currency}${interest.toFixed(2)}</td>
+          <td>${currency}${balance > 0 ? balance.toFixed(2) : "0.00"}</td>
+        </tr>
+      `;
+
+      tableBody.innerHTML += row;
+
+    } else {
+
+      if (month % 12 === 0) {
+        const year = month / 12;
+
+        const row = `
+          <tr>
+            <td>Year ${year}</td>
+            <td>${currency}${(emi * 12).toFixed(2)}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>${currency}${balance > 0 ? balance.toFixed(2) : "0.00"}</td>
+          </tr>
+        `;
+
+        tableBody.innerHTML += row;
+      }
+
+    }
   }
 }
