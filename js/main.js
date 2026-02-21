@@ -250,6 +250,7 @@ function calculateEMI() {
     "Total Interest: " + currency + totalInterest.toFixed(2) + "<br><br>" +
     "<strong>Total Payment: " + currency + totalPayment.toFixed(2) + "</strong>";
 
+  // Chart
   const ctx = document.getElementById("emiChart").getContext("2d");
 
   if (emiChartInstance) {
@@ -264,6 +265,36 @@ function calculateEMI() {
         data: [loanAmount, totalInterest]
       }]
     },
+    options: {
+      responsive: true
+    }
+  });
+
+  // Amortization Table
+  const tableBody = document.querySelector("#amortTable tbody");
+  tableBody.innerHTML = "";
+
+  let balance = loanAmount;
+
+  for (let month = 1; month <= months; month++) {
+
+    const interest = balance * monthlyRate;
+    const principal = emi - interest;
+    balance -= principal;
+
+    const row = `
+      <tr>
+        <td>${month}</td>
+        <td>${currency}${emi.toFixed(2)}</td>
+        <td>${currency}${principal.toFixed(2)}</td>
+        <td>${currency}${interest.toFixed(2)}</td>
+        <td>${currency}${balance > 0 ? balance.toFixed(2) : "0.00"}</td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  }
+}
     options: {
       responsive: true
     }
