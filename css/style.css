@@ -176,3 +176,16 @@ nav a:hover {
     border: 1px dashed #CBD5E1;
     color: #64748B;
 }
+.btn-secondary {
+  background:#ddd;
+  border:none;
+  padding:8px 15px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.btn-secondary.active,
+.btn-primary.active {
+  background:#1e88e5;
+  color:#fff;
+}
