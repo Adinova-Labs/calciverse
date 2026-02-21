@@ -111,3 +111,31 @@ function calculateLoan() {
         "Total Payment: " + currency + formatNumber(totalPayment) + "<br>" +
         "Total Interest: " + currency + formatNumber(totalInterest);
 }
+function calculateCompound() {
+
+    const currency = document.getElementById("ciCurrency").value;
+    const principal = parseFloat(document.getElementById("ciPrincipal").value);
+    const rate = parseFloat(document.getElementById("ciRate").value);
+    const years = parseFloat(document.getElementById("ciYears").value);
+    const frequency = parseFloat(document.getElementById("ciFrequency").value);
+
+    if (!principal || !rate || !years) {
+        document.getElementById("ciResult").innerHTML = "Please enter required fields correctly.";
+        return;
+    }
+
+    const r = rate / 100;
+    const amount = principal * Math.pow((1 + r / frequency), frequency * years);
+    const interest = amount - principal;
+
+    const formatNumber = (num) => {
+        return num.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    };
+
+    document.getElementById("ciResult").innerHTML =
+        "Final Amount: " + currency + formatNumber(amount) + "<br><br>" +
+        "Total Interest Earned: " + currency + formatNumber(interest);
+}
