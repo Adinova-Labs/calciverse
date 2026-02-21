@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIP Calculator – Calculate Mutual Fund Returns | Calciverse</title>
+<meta name="description" content="Free SIP calculator to estimate your mutual fund investment returns. Calculate total investment, returns and maturity amount instantly.">
+
+<link rel="stylesheet" href="../css/style.css">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{
+   "@type": "Question",
+   "name": "What is SIP?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "SIP stands for Systematic Investment Plan where investors invest a fixed amount regularly in mutual funds."
+   }
+ },{
+   "@type": "Question",
+   "name": "How is SIP maturity calculated?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "SIP returns are calculated using the future value formula considering monthly investments and compounding returns."
+   }
+ }]
+}
+</script>
+
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav-content">
+    <div class="logo">Calciverse</div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="index.html">Calculators</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>SIP Calculator</h1>
+    <p>Estimate your mutual fund investment growth with systematic monthly investments.</p>
+  </div>
+</section>
+
+<div class="container" style="margin-top:40px;">
+
+<div style="background:#fff; padding:30px; border-radius:10px; max-width:500px; margin:auto;">
+
+<label>Currency</label>
+<select id="currency">
+  <option value="$">$ USD</option>
+  <option value="₹">₹ INR</option>
+  <option value="€">€ EUR</option>
+</select>
+
+<label>Monthly Investment</label>
+<input type="number" id="monthlyInvestment" placeholder="Enter monthly amount">
+
+<label>Expected Annual Return (%)</label>
+<input type="number" id="rate" placeholder="Enter expected return">
+
+<label>Investment Period (Years)</label>
+<input type="number" id="years" placeholder="Enter number of years">
+
+<button class="btn-primary" onclick="calculateSIP()">Calculate</button>
+
+<div class="result-box" id="result"></div>
+
+</div>
+</div>
+
+<section class="seo-content">
+  <div class="container">
+    <h2>How SIP Works</h2>
+    <p>
+      SIP allows investors to invest small amounts monthly. Returns are compounded over time, 
+      helping build wealth systematically.
+    </p>
+
+    <h2>SIP Formula</h2>
+    <p>
+      M = P × ((1 + r)^n − 1) × (1 + r) / r
+    </p>
+
+    <p>
+      Where P is monthly investment, r is monthly interest rate and n is total months.
+    </p>
+
+    <p>
+      You may also use our 
+      <a href="compound-interest-calculator.html">Compound Interest Calculator</a>.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Calciverse. All Rights Reserved.</p>
+</footer>
+
+<script src="../js/main.js"></script>
+
+</body>
+</html>
