@@ -183,7 +183,42 @@ nav a:hover {
   border-radius:5px;
   cursor:pointer;
 }
+/* FD Card Layout */
+.fd-card {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
 
+.fd-form {
+  flex: 1;
+}
+
+.fd-result-section {
+  flex: 1;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.chart-wrapper {
+  max-width: 350px;
+  margin-top: 20px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .fd-card {
+    flex-direction: column;
+  }
+
+  .chart-wrapper {
+    max-width: 100%;
+  }
+}
 .btn-secondary.active,
 .btn-primary.active {
   background:#1e88e5;
