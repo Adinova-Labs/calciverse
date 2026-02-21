@@ -139,6 +139,8 @@ function calculateCompound() {
         "Final Amount: " + currency + formatNumber(amount) + "<br><br>" +
         "Total Interest Earned: " + currency + formatNumber(interest);
 }
+let sipChartInstance = null;
+
 function calculateSIP() {
 
   const currency = document.getElementById("currency").value;
@@ -154,15 +156,68 @@ function calculateSIP() {
   const monthlyRate = annualRate / 100 / 12;
   const months = years * 12;
 
-  const maturityAmount = monthlyInvestment *
-    ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
-    (1 + monthlyRate);
+  let maturityAmount = 0;
+  let totalInvestment = 0;
 
-  const totalInvestment = monthlyInvestment * months;
-  const totalReturns = maturityAmount - totalInvestment;
+  let labels = [];
+  let investmentData = [];
+  let valueData = [];
+
+  for (let i = 1; i <= months; i++) {
+
+    maturityAmount =
+      monthlyInvestment *
+      ((Math.pow(1 + monthlyRate, i) - 1) / monthlyRate) *
+      (1 + monthlyRate);
+
+    totalInvestment = monthlyInvestment * i;
+
+    if (i % 12 === 0) {
+      labels.push("Year " + (i / 12));
+      investmentData.push(totalInvestment.toFixed(2));
+      valueData.push(maturityAmount.toFixed(2));
+    }
+  }
+
+  const totalReturns = maturityAmount - (monthlyInvestment * months);
 
   document.getElementById("result").innerHTML =
-    "Total Investment: " + currency + totalInvestment.toFixed(2) + "<br>" +
+    "Total Investment: " + currency + (monthlyInvestment * months).toFixed(2) + "<br>" +
     "Estimated Returns: " + currency + totalReturns.toFixed(2) + "<br><br>" +
     "<strong>Maturity Amount: " + currency + maturityAmount.toFixed(2) + "</strong>";
+
+  const ctx = document.getElementById("sipChart").getContext("2d");
+
+  if (sipChartInstance) {
+    sipChartInstance.destroy();
+  }
+
+  sipChartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Total Investment",
+          data: investmentData,
+          borderWidth: 2,
+          fill: false
+        },
+        {
+          label: "Investment Value",
+          data: valueData,
+          borderWidth: 2,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "top"
+        }
+      }
+    }
+  });
 }
