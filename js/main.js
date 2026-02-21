@@ -221,3 +221,51 @@ function calculateSIP() {
     }
   });
 }
+let emiChartInstance = null;
+
+function calculateEMI() {
+
+  const currency = document.getElementById("currency").value;
+  const loanAmount = parseFloat(document.getElementById("loanAmount").value);
+  const annualRate = parseFloat(document.getElementById("rate").value);
+  const years = parseFloat(document.getElementById("years").value);
+
+  if (isNaN(loanAmount) || isNaN(annualRate) || isNaN(years)) {
+    document.getElementById("result").innerHTML = "Please fill all fields correctly.";
+    return;
+  }
+
+  const monthlyRate = annualRate / 100 / 12;
+  const months = years * 12;
+
+  const emi =
+    loanAmount * monthlyRate * Math.pow(1 + monthlyRate, months) /
+    (Math.pow(1 + monthlyRate, months) - 1);
+
+  const totalPayment = emi * months;
+  const totalInterest = totalPayment - loanAmount;
+
+  document.getElementById("result").innerHTML =
+    "Monthly EMI: " + currency + emi.toFixed(2) + "<br>" +
+    "Total Interest: " + currency + totalInterest.toFixed(2) + "<br><br>" +
+    "<strong>Total Payment: " + currency + totalPayment.toFixed(2) + "</strong>";
+
+  const ctx = document.getElementById("emiChart").getContext("2d");
+
+  if (emiChartInstance) {
+    emiChartInstance.destroy();
+  }
+
+  emiChartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Principal", "Interest"],
+      datasets: [{
+        data: [loanAmount, totalInterest]
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+}
