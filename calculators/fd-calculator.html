@@ -21,41 +21,63 @@
   <p>Calculate maturity amount and interest earned on your fixed deposit.</p>
 </section>
 
-<div class="calculator-box">
+<div class="calculator-box fd-card">
 
-  <label>Currency</label>
-  <select id="fdCurrency">
-    <option value="₹" selected>₹ INR</option>
-    <option value="$">$ USD</option>
-  </select>
+  <div class="fd-form">
 
-  <label>Principal Amount</label>
-  <input type="number" id="fdPrincipal" placeholder="Enter principal amount">
+    <div class="input-group">
+      <label>Currency</label>
+      <select id="fdCurrency">
+        <option value="₹" selected>₹ INR</option>
+        <option value="$">$ USD</option>
+      </select>
+    </div>
 
-  <label>Annual Interest Rate (%)</label>
-  <input type="number" id="fdRate" placeholder="Enter interest rate">
+    <div class="input-group">
+      <label>Principal Amount</label>
+      <input type="number" id="fdPrincipal" placeholder="Enter principal amount">
+    </div>
 
-  <label>Investment Period (Years)</label>
-  <input type="number" id="fdYears" placeholder="Enter number of years">
+    <div class="input-group">
+      <label>Annual Interest Rate (%)</label>
+      <input type="number" id="fdRate" placeholder="Enter interest rate">
+    </div>
 
-  <label>Interest Type</label>
-  <select id="fdType">
-    <option value="compound" selected>Compound</option>
-    <option value="simple">Simple</option>
-  </select>
+    <div class="input-group">
+      <label>Investment Period (Years)</label>
+      <input type="number" id="fdYears" placeholder="Enter number of years">
+    </div>
 
-  <label>Compounding Frequency</label>
-  <select id="fdFrequency">
-    <option value="1">Yearly</option>
-    <option value="4" selected>Quarterly</option>
-    <option value="12">Monthly</option>
-  </select>
+    <div class="input-group">
+      <label>Interest Type</label>
+      <select id="fdType">
+        <option value="compound" selected>Compound</option>
+        <option value="simple">Simple</option>
+      </select>
+    </div>
 
-  <button onclick="calculateFD()">Calculate</button>
+    <div class="input-group">
+      <label>Compounding Frequency</label>
+      <select id="fdFrequency">
+        <option value="1">Yearly</option>
+        <option value="4" selected>Quarterly</option>
+        <option value="12">Monthly</option>
+      </select>
+    </div>
 
-  <div id="fdResult" class="result-box"></div>
+    <button onclick="calculateFD()">Calculate</button>
 
-  <canvas id="fdChart"></canvas>
+  </div>
+
+  <div class="fd-result-section">
+
+    <div id="fdResult" class="result-box"></div>
+
+    <div class="chart-wrapper">
+      <canvas id="fdChart"></canvas>
+    </div>
+
+  </div>
 
 </div>
 
