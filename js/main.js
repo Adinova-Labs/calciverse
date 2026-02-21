@@ -250,28 +250,32 @@ function calculateEMI() {
     "Total Interest: " + currency + totalInterest.toFixed(2) + "<br><br>" +
     "<strong>Total Payment: " + currency + totalPayment.toFixed(2) + "</strong>";
 
-  // Chart
-  const ctx = document.getElementById("emiChart").getContext("2d");
+  // Chart Safe Check
+  const chartCanvas = document.getElementById("emiChart");
+  if (chartCanvas) {
+    const ctx = chartCanvas.getContext("2d");
 
-  if (emiChartInstance) {
-    emiChartInstance.destroy();
+    if (emiChartInstance) {
+      emiChartInstance.destroy();
+    }
+
+    emiChartInstance = new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: ["Principal", "Interest"],
+        datasets: [{
+          data: [loanAmount, totalInterest]
+        }]
+      },
+      options: { responsive: true }
+    });
   }
 
-  emiChartInstance = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Principal", "Interest"],
-      datasets: [{
-        data: [loanAmount, totalInterest]
-      }]
-    },
-    options: {
-      responsive: true
-    }
-  });
+  // Amortization Table Safe Check
+  const table = document.getElementById("amortTable");
+  if (!table) return;
 
-  // Amortization Table
-  const tableBody = document.querySelector("#amortTable tbody");
+  const tableBody = table.querySelector("tbody");
   tableBody.innerHTML = "";
 
   let balance = loanAmount;
@@ -294,9 +298,4 @@ function calculateEMI() {
 
     tableBody.innerHTML += row;
   }
-}
-    options: {
-      responsive: true
-    }
-  });
 }
