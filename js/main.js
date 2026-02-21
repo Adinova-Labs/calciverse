@@ -337,3 +337,52 @@ function calculateEMI() {
     }
   }
 }
+let fdChartInstance = null;
+
+function calculateFD() {
+
+  const currency = document.getElementById("fdCurrency").value;
+  const principal = parseFloat(document.getElementById("fdPrincipal").value);
+  const rate = parseFloat(document.getElementById("fdRate").value);
+  const years = parseFloat(document.getElementById("fdYears").value);
+  const type = document.getElementById("fdType").value;
+  const frequency = parseInt(document.getElementById("fdFrequency").value);
+
+  if (isNaN(principal) || isNaN(rate) || isNaN(years)) {
+    document.getElementById("fdResult").innerHTML = "Please fill all fields correctly.";
+    return;
+  }
+
+  const r = rate / 100;
+  let maturity;
+
+  if (type === "simple") {
+    maturity = principal * (1 + r * years);
+  } else {
+    maturity = principal * Math.pow((1 + r / frequency), frequency * years);
+  }
+
+  const interest = maturity - principal;
+
+  document.getElementById("fdResult").innerHTML =
+    "Principal: " + currency + principal.toFixed(2) + "<br>" +
+    "Interest Earned: " + currency + interest.toFixed(2) + "<br><br>" +
+    "<strong>Maturity Amount: " + currency + maturity.toFixed(2) + "</strong>";
+
+  const chartCanvas = document.getElementById("fdChart");
+
+  if (fdChartInstance) {
+    fdChartInstance.destroy();
+  }
+
+  fdChartInstance = new Chart(chartCanvas, {
+    type: "doughnut",
+    data: {
+      labels: ["Principal", "Interest"],
+      datasets: [{
+        data: [principal, interest]
+      }]
+    },
+    options: { responsive: true }
+  });
+}
