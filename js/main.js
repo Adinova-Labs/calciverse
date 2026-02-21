@@ -139,3 +139,30 @@ function calculateCompound() {
         "Final Amount: " + currency + formatNumber(amount) + "<br><br>" +
         "Total Interest Earned: " + currency + formatNumber(interest);
 }
+function calculateSIP() {
+
+  const currency = document.getElementById("currency").value;
+  const monthlyInvestment = parseFloat(document.getElementById("monthlyInvestment").value);
+  const annualRate = parseFloat(document.getElementById("rate").value);
+  const years = parseFloat(document.getElementById("years").value);
+
+  if (!monthlyInvestment || !annualRate || !years) {
+    document.getElementById("result").innerHTML = "Please fill all fields.";
+    return;
+  }
+
+  const monthlyRate = annualRate / 100 / 12;
+  const months = years * 12;
+
+  const maturityAmount = monthlyInvestment *
+    ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) *
+    (1 + monthlyRate);
+
+  const totalInvestment = monthlyInvestment * months;
+  const totalReturns = maturityAmount - totalInvestment;
+
+  document.getElementById("result").innerHTML =
+    "Total Investment: " + currency + totalInvestment.toFixed(2) + "<br>" +
+    "Estimated Returns: " + currency + totalReturns.toFixed(2) + "<br><br>" +
+    "<strong>Maturity Amount: " + currency + maturityAmount.toFixed(2) + "</strong>";
+}
