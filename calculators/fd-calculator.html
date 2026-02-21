@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FD Calculator - Calciverse</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="../js/main.js"></script>
+</head>
+<body>
+
+<header>
+  <h2>Calciverse</h2>
+  <nav>
+    <a href="../index.html">Home</a>
+    <a href="index.html">Calculators</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Fixed Deposit (FD) Calculator</h1>
+  <p>Calculate maturity amount and interest earned on your fixed deposit.</p>
+</section>
+
+<div class="calculator-box">
+
+  <label>Currency</label>
+  <select id="fdCurrency">
+    <option value="₹">₹ INR</option>
+    <option value="$">$ USD</option>
+  </select>
+
+  <label>Principal Amount</label>
+  <input type="number" id="fdPrincipal">
+
+  <label>Annual Interest Rate (%)</label>
+  <input type="number" id="fdRate">
+
+  <label>Investment Period (Years)</label>
+  <input type="number" id="fdYears">
+
+  <label>Interest Type</label>
+  <select id="fdType">
+    <option value="compound">Compound</option>
+    <option value="simple">Simple</option>
+  </select>
+
+  <label>Compounding Frequency</label>
+  <select id="fdFrequency">
+    <option value="1">Yearly</option>
+    <option value="4">Quarterly</option>
+    <option value="12">Monthly</option>
+  </select>
+
+  <button onclick="calculateFD()">Calculate</button>
+
+  <div id="fdResult" class="result-box"></div>
+
+  <canvas id="fdChart"></canvas>
+
+</div>
+
+<footer>
+  © 2026 Calciverse. All Rights Reserved.
+</footer>
+
+</body>
+</html>
