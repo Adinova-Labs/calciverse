@@ -383,6 +383,13 @@ function calculateFD() {
         data: [principal, interest]
       }]
     },
-    options: { responsive: true }
-  });
+    options: {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'bottom'
+    }
+  }
 }
+
