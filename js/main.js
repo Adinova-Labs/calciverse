@@ -374,6 +374,43 @@ function calculateFD() {
   if (fdChartInstance) {
     fdChartInstance.destroy();
   }
+    // Year-wise Table
+const table = document.getElementById("fdTable");
+if (table) {
+
+  const tbody = table.querySelector("tbody");
+  tbody.innerHTML = "";
+
+  let balance = principal;
+
+  for (let year = 1; year <= years; year++) {
+
+    const opening = balance;
+
+    let closing;
+
+    if (type === "simple") {
+      closing = principal * (1 + r * year);
+    } else {
+      closing = principal * Math.pow((1 + r / frequency), frequency * year);
+    }
+
+    const yearlyInterest = closing - opening;
+
+    const row = `
+      <tr>
+        <td>${year}</td>
+        <td>${currency}${opening.toFixed(2)}</td>
+        <td>${currency}${yearlyInterest.toFixed(2)}</td>
+        <td>${currency}${closing.toFixed(2)}</td>
+      </tr>
+    `;
+
+    tbody.innerHTML += row;
+
+    balance = closing;
+  }
+}
 
   fdChartInstance = new Chart(chartCanvas, {
     type: "doughnut",
