@@ -437,42 +437,4 @@ if (table) {
 });
 
 }
-// Line Chart
-const lineCanvas = document.getElementById("fdLineChart");
 
-if (lineCanvas) {
-
-  if (fdLineChartInstance) {
-    fdLineChartInstance.destroy();
-  }
-
-  const ctxLine = lineCanvas.getContext("2d");
-
-  fdLineChartInstance = new Chart(ctxLine, {
-    type: "line",
-    data: {
-      labels: yearLabels,
-      datasets: [{
-        label: "Investment Growth",
-        data: balanceData,
-        borderWidth: 3,
-        tension: 0.3,
-        fill: false
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: false
-        }
-      },
-      plugins: {
-        legend: {
-          position: "bottom"
-        }
-      }
-    }
-  });
-}
