@@ -293,3 +293,25 @@ nav a:hover {
   border-radius: 6px;
   margin-top: 20px;
 }
+.fd-table-wrapper {
+  width: 100%;
+  margin-top: 25px;
+}
+
+#fdTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+#fdTable th,
+#fdTable td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+#fdTable th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
