@@ -10,83 +10,23 @@
 <link rel="canonical" href="">
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body { margin:0; font-family:Arial; background:#f4f6f9; }
-
-header {
-  display:flex; justify-content:space-between;
-  padding:15px 40px; background:white;
-  box-shadow:0 2px 6px rgba(0,0,0,0.05);
-}
-header .logo { font-weight:bold; font-size:20px; color:#2f55d4; }
-header nav a { margin-left:20px; text-decoration:none; color:#333; }
-
-.hero {
-  background:linear-gradient(90deg,#2f55d4,#3a6ee8);
-  color:white; text-align:center;
-  padding:50px 20px;
-}
-
-.ad-top,.ad-bottom{
-  max-width:1000px; margin:25px auto;
-  padding:20px; text-align:center;
-  background:#e9edf5; border-radius:8px;
-}
-
-.container{ max-width:1000px; margin:40px auto; padding:0 20px; }
-
-.card{
-  background:white; padding:30px;
-  border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-}
-
-.form-grid{
-  display:grid; grid-template-columns:1fr 1fr; gap:20px;
-}
-
-label{ font-size:14px; font-weight:600; }
-input{
-  width:100%; padding:10px;
-  border-radius:6px; border:1px solid #ccc;
-  margin-top:5px;
-}
-
-button{
-  margin-top:15px; padding:10px 18px;
-  background:#1f8f6b; color:white;
-  border:none; border-radius:6px;
-  font-weight:600; cursor:pointer;
-}
-button:hover{ background:#167a5a; }
-
-.result-box{
-  margin-top:20px; padding:18px;
-  background:#e6f4ef;
-  border-left:4px solid #1f8f6b;
-  border-radius:8px;
-}
-
-canvas{ margin-top:30px; max-height:260px; }
-
-table{
-  width:100%; margin-top:30px;
-  border-collapse:collapse; font-size:14px;
-}
-th,td{
-  padding:10px; border-bottom:1px solid #eee;
-  text-align:center;
-}
-th{ background:#f2f3f7; }
-
-.faq{ max-width:1000px; margin:60px auto; padding:0 20px; }
-
-footer{
-  background:#0f1a3a; color:white;
-  text-align:center; padding:25px;
-  margin-top:50px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body{background:#f4f6fb;color:#1e293b;}
+.navbar{background:#fff;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+.logo{font-size:20px;font-weight:700;color:#2563eb;}
+.nav-links a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
+.hero{background:linear-gradient(135deg,#2563eb,#4f46e5);padding:60px 20px;text-align:center;color:#fff;}
+.hero h1{font-size:34px;margin-bottom:10px;}
+.container{max-width:800px;margin:auto;padding:40px 20px;}
+.card{background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+.form-group{margin-bottom:18px;}
+label{font-weight:600;font-size:14px;display:block;margin-bottom:6px;}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #e2e8f0;font-size:14px;}
+button{width:100%;padding:14px;border:none;background:#2563eb;color:#fff;font-weight:600;border-radius:12px;cursor:pointer;margin-top:10px;}
+.result{background:#ecfdf5;border-left:5px solid #10b981;padding:20px;border-radius:12px;margin-top:20px;}
+footer{background:#0f172a;color:#cbd5e1;padding:30px 8%;text-align:center;margin-top:60px;}
 </style>
 </head>
 
