@@ -10,213 +10,52 @@
 <script defer src="../js/main.js"></script>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+.calculator-box {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 40px auto;
 }
 
-body{
-background:#f4f6fb;
-color:#1e293b;
+.calculator-box input, .calculator-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
 }
 
-/* NAVBAR */
-
-.navbar{
-background:#ffffff;
-padding:18px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-.logo{
-font-size:20px;
-font-weight:700;
-color:#2563eb;
-}
-
-.nav-links a{
-text-decoration:none;
-margin-left:25px;
-color:#475569;
-font-weight:500;
-}
-
-.nav-links a:hover{
-color:#2563eb;
-}
-
-/* HERO */
-
-.hero{
-background:linear-gradient(135deg,#2563eb,#4f46e5);
-padding:60px 20px;
-text-align:center;
-color:#fff;
-}
-
-.hero h1{
-font-size:34px;
-margin-bottom:10px;
-}
-
-.hero p{
-opacity:0.9;
-}
-
-/* CONTAINER */
-
-.container{
-max-width:900px;
-margin:auto;
-padding:40px 20px;
-}
-
-/* AD */
-
-.ad-box{
-background:#eef2ff;
-border:2px dashed #c7d2fe;
-text-align:center;
-padding:20px;
-border-radius:12px;
-margin-bottom:30px;
-font-weight:500;
-color:#6366f1;
-}
-
-/* CARD */
-
-.card{
-background:#ffffff;
-padding:30px;
-border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,0.05);
-margin-bottom:30px;
-}
-
-/* FORM */
-
-.form-group{
-margin-bottom:18px;
-}
-
-label{
-font-weight:600;
-font-size:14px;
-display:block;
-margin-bottom:6px;
-}
-
-input,select{
-width:100%;
-padding:12px;
-border-radius:10px;
-border:1px solid #e2e8f0;
-font-size:14px;
-}
-
-input:focus,select:focus{
-outline:none;
-border-color:#2563eb;
-}
-
-button{
-width:100%;
-padding:14px;
-border:none;
-background:#2563eb;
-color:#fff;
-font-weight:600;
-border-radius:12px;
-cursor:pointer;
-margin-top:10px;
-transition:0.3s;
-}
-
-button:hover{
-background:#1d4ed8;
-}
-
-/* RESULT */
-
-.result{
-background:#ecfdf5;
-border-left:5px solid #10b981;
-padding:20px;
-border-radius:12px;
-margin-top:20px;
-}
-
-.result p{
-margin-bottom:8px;
-font-weight:500;
-}
-
-/* TABLE */
-
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
-
-th{
-background:#f1f5f9;
-padding:12px;
-font-size:14px;
-text-align:left;
-}
-
-td{
-padding:12px;
-border-bottom:1px solid #e2e8f0;
-font-size:14px;
-}
-
-tr:hover{
-background:#f8fafc;
-}
-
-/* FAQ */
-
-.faq{
-margin-top:50px;
-}
-
-.faq h3{
-margin-bottom:15px;
-}
-
-.faq p{
-margin-bottom:10px;
-color:#475569;
-}
-
-/* FOOTER */
-
-footer{
-background:#0f172a;
-color:#cbd5e1;
-padding:30px 8%;
-text-align:center;
-margin-top:60px;
-}
-
-footer a{
-color:#94a3b8;
-text-decoration:none;
-margin:0 10px;
-}
-
-footer a:hover{
-color:#fff;
+.result-box {
+    margin-top: 20px;
+    padding: 20px;
+    background: #F1F5F9;
+    border-radius: 6px;
+    font-weight: bold;
 }
 </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How is mortgage calculated?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Mortgage payments are calculated using the standard amortization formula based on loan amount, interest rate and term."
+    }
+  },{
+    "@type": "Question",
+    "name": "What is included in a mortgage payment?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Mortgage payments typically include principal and interest. Some loans may also include taxes and insurance."
+    }
+  }]
+}
+</script>
 </head>
 
 <body>
@@ -299,47 +138,5 @@ color:#fff;
   <a href="#">Privacy Policy</a>
   <a href="#">Terms</a>
 </footer>
-
-<script>
-let chartInstance = null;
-
-function calculate() {
-
-  const val1 = parseFloat(document.getElementById("input1").value);
-  const val2 = parseFloat(document.getElementById("input2").value);
-
-  if (isNaN(val1) || isNaN(val2)) {
-    document.getElementById("result").innerHTML = "Please enter valid values.";
-    return;
-  }
-
-  const resultValue = val1 + val2;
-
-  document.getElementById("result").innerHTML =
-    "<strong>Result:</strong> " + resultValue;
-
-  const ctx = document.getElementById("chart");
-
-  if (chartInstance) {
-    chartInstance.destroy();
-  }
-
-  chartInstance = new Chart(ctx, {
-    type: "doughnut",
-    data: {
-      labels: ["Value 1", "Value 2"],
-      datasets: [{
-        data: [val1, val2]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false
-    }
-  });
-
-}
-</script>
-
 </body>
 </html>
