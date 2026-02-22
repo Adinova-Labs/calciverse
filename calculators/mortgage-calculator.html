@@ -10,52 +10,156 @@
 <script defer src="../js/main.js"></script>
 
 <style>
-.calculator-box {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    max-width: 600px;
-    margin: 40px auto;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #222;
 }
 
-.calculator-box input, .calculator-box select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 20px;
+  color: #2f55d4;
+}
+
+header nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.hero {
+  background: linear-gradient(90deg,#2f55d4,#3a6ee8);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.ad-top, .ad-bottom {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 20px;
+  text-align: center;
+  background: #e9edf5;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 18px;
+  background: #1f8f6b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #167a5a;
 }
 
 .result-box {
-    margin-top: 20px;
-    padding: 20px;
-    background: #F1F5F9;
-    border-radius: 6px;
-    font-weight: bold;
+  margin-top: 20px;
+  padding: 18px;
+  background: #e6f4ef;
+  border-left: 4px solid #1f8f6b;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+canvas {
+  margin-top: 30px;
+  max-height: 260px;
+}
+
+table {
+  width: 100%;
+  margin-top: 30px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+th {
+  background: #f2f3f7;
+}
+
+.faq {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+footer {
+  background: #0f1a3a;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  font-size: 13px;
+  margin-top: 50px;
+}
+
+footer a {
+  color: #ddd;
+  margin: 0 10px;
+  text-decoration: none;
 }
 </style>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [{
-    "@type": "Question",
-    "name": "How is mortgage calculated?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Mortgage payments are calculated using the standard amortization formula based on loan amount, interest rate and term."
-    }
-  },{
-    "@type": "Question",
-    "name": "What is included in a mortgage payment?",
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Mortgage payments typically include principal and interest. Some loans may also include taxes and insurance."
-    }
-  }]
-}
-</script>
 </head>
 
 <body>
@@ -77,13 +181,14 @@
         <p>Estimate your monthly home loan payments instantly.</p>
     </div>
 </section>
-    <div class="container" style="margin-top:30px;">
-    <div style="background:#F1F5F9; padding:20px; text-align:center; border-radius:6px;">
-        Ad Space (Top Banner)
-    </div>
-</div>
 
-<div class="calculator-box">
+<div class="ad-top">Ad Space (Top Banner)</div>
+
+<div class="container" style="margin-top:30px;">
+    <div style="background:#F1F5F9; padding:20px; text-align:center; border-radius:6px;">
+
+    <!-- INPUT FORM -->
+    <div class="calculator-box">
     <label>Currency</label>
     <select id="currency">
         <option value="$">$ USD</option>
@@ -110,16 +215,13 @@
     <div id="amortization"></div>
 </div>
     <div class="container" style="margin-top:40px;">
-    <div class="ad-placeholder">
-        Advertisement
-    </div>
 </div>
 
-<section class="seo-content">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
+<div class="ad-bottom">Advertisement</div>
 
-<h3>How is mortgage calculated?</h3>
+<section class="faq">
+  <h2>Frequently Asked Questions</h2>
+  <h3>How is mortgage calculated?</h3>
 <p>A mortgage is calculated using the amortization formula that considers loan amount, interest rate and loan term to determine monthly payments.</p>
 
 <h3>What is included in a mortgage payment?</h3>
@@ -133,16 +235,54 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <p>© 2026 Calciverse. All Rights Reserved.</p>
-        <div class="footer-links">
-            <a href="../about.html">About</a>
-            <a href="../privacy-policy.html">Privacy Policy</a>
-            <a href="../terms.html">Terms</a>
-        </div>
-    </div>
+<footer>
+  © 2026 Calciverse. All Rights Reserved.
+  <br><br>
+  <a href="#">About</a>
+  <a href="#">Privacy Policy</a>
+  <a href="#">Terms</a>
 </footer>
+
+<script>
+let chartInstance = null;
+
+function calculate() {
+
+  const val1 = parseFloat(document.getElementById("input1").value);
+  const val2 = parseFloat(document.getElementById("input2").value);
+
+  if (isNaN(val1) || isNaN(val2)) {
+    document.getElementById("result").innerHTML = "Please enter valid values.";
+    return;
+  }
+
+  const resultValue = val1 + val2;
+
+  document.getElementById("result").innerHTML =
+    "<strong>Result:</strong> " + resultValue;
+
+  const ctx = document.getElementById("chart");
+
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Value 1", "Value 2"],
+      datasets: [{
+        data: [val1, val2]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+
+}
+</script>
 
 </body>
 </html>
