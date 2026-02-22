@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PPF Calculator | Calciverse</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+  <h2>Calciverse</h2>
+</header>
+
+<section class="hero">
+  <h1>PPF Calculator</h1>
+  <p>Calculate your Public Provident Fund maturity and interest earnings.</p>
+</section>
+
+<div class="card-container">
+
+  <div class="calculator-card">
+
+    <label>Yearly Investment (₹)</label>
+    <input type="number" id="ppfInvestment" value="100000">
+
+    <label>Interest Rate (%)</label>
+    <input type="number" id="ppfRate" value="7.1">
+
+    <label>Investment Period (Years)</label>
+    <input type="number" id="ppfYears" value="15">
+
+    <button onclick="calculatePPF()">Calculate</button>
+
+    <div id="ppfResult" class="result-box"></div>
+
+    <canvas id="ppfChart"></canvas>
+
+    <div class="table-wrapper">
+      <h3>Year-wise Growth</h3>
+      <table id="ppfTable">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Total Invested</th>
+            <th>Interest Earned</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Calciverse. All Rights Reserved.
+</footer>
+
+<script src="../main.js"></script>
+
+</body>
+</html>
