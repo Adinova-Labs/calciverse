@@ -448,7 +448,7 @@ if (lineCanvas) {
 
   const ctxLine = lineCanvas.getContext("2d");
 
-fdLineChartInstance = new Chart(ctxLine, {
+  fdLineChartInstance = new Chart(ctxLine, {
     type: "line",
     data: {
       labels: yearLabels,
@@ -463,9 +463,13 @@ fdLineChartInstance = new Chart(ctxLine, {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: false
+        }
+      },
       plugins: {
         legend: {
-          display: true,
           position: "bottom"
         }
       }
