@@ -338,6 +338,7 @@ function calculateEMI() {
   }
 }
 let fdChartInstance = null;
+let fdLineChartInstance = null;
 
 function calculateFD() {
 
@@ -375,6 +376,8 @@ function calculateFD() {
     fdChartInstance.destroy();
   }
     // Year-wise Table
+let yearLabels = [];
+let balanceData = [];
 const table = document.getElementById("fdTable");
 if (table) {
 
@@ -409,6 +412,8 @@ if (table) {
     tbody.innerHTML += row;
 
     balance = closing;
+      yearLabels.push("Year " + year);
+      balanceData.push(closing);
   }
 }
 
@@ -431,4 +436,37 @@ if (table) {
   }
 });
 
+}
+// Line Chart
+const lineCanvas = document.getElementById("fdLineChart");
+
+if (lineCanvas) {
+
+  if (fdLineChartInstance) {
+    fdLineChartInstance.destroy();
+  }
+
+  fdLineChartInstance = new Chart(lineCanvas, {
+    type: "line",
+    data: {
+      labels: yearLabels,
+      datasets: [{
+        label: "Investment Growth",
+        data: balanceData,
+        borderWidth: 3,
+        tension: 0.3,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: "bottom"
+        }
+      }
+    }
+  });
 }
