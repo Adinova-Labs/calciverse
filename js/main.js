@@ -437,4 +437,69 @@ if (table) {
 });
 
 }
+let ppfChartInstance = null;
 
+function calculatePPF() {
+
+  const yearlyInvestment = parseFloat(document.getElementById("ppfInvestment").value);
+  const rate = parseFloat(document.getElementById("ppfRate").value) / 100;
+  const years = parseInt(document.getElementById("ppfYears").value);
+
+  if (isNaN(yearlyInvestment) || isNaN(rate) || isNaN(years)) {
+    document.getElementById("ppfResult").innerHTML = "Please fill all fields correctly.";
+    return;
+  }
+
+  let balance = 0;
+  let totalInvested = 0;
+
+  const tableBody = document.querySelector("#ppfTable tbody");
+  tableBody.innerHTML = "";
+
+  for (let year = 1; year <= years; year++) {
+
+    totalInvested += yearlyInvestment;
+
+    balance = (balance + yearlyInvestment) * (1 + rate);
+
+    const interest = balance - totalInvested;
+
+    const row = `
+      <tr>
+        <td>${year}</td>
+        <td>₹${totalInvested.toFixed(2)}</td>
+        <td>₹${interest.toFixed(2)}</td>
+        <td>₹${balance.toFixed(2)}</td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  }
+
+  const totalInterest = balance - totalInvested;
+
+  document.getElementById("ppfResult").innerHTML =
+    "Total Invested: ₹" + totalInvested.toFixed(2) + "<br>" +
+    "Total Interest: ₹" + totalInterest.toFixed(2) + "<br><br>" +
+    "<strong>Maturity Amount: ₹" + balance.toFixed(2) + "</strong>";
+
+  const ctx = document.getElementById("ppfChart");
+
+  if (ppfChartInstance) {
+    ppfChartInstance.destroy();
+  }
+
+  ppfChartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Invested Amount", "Interest Earned"],
+      datasets: [{
+        data: [totalInvested, totalInterest]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
