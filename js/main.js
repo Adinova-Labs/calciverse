@@ -446,7 +446,9 @@ if (lineCanvas) {
     fdLineChartInstance.destroy();
   }
 
-  fdLineChartInstance = new Chart(lineCanvas, {
+  const ctxLine = lineCanvas.getContext("2d");
+
+fdLineChartInstance = new Chart(ctxLine, {
     type: "line",
     data: {
       labels: yearLabels,
