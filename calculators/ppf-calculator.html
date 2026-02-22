@@ -2,55 +2,156 @@
 <html>
 <head>
   <title>PPF Calculator | Calciverse</title>
-  <link rel="stylesheet" href="/calciverse/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f9;
+    }
+
+    header {
+      padding: 15px 40px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .hero {
+      background: linear-gradient(90deg, #2f55d4, #3a6ee8);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .card {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 18px;
+      background: #1f8f6b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #167a5a;
+    }
+
+    .result-box {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e6f4ef;
+      border-left: 4px solid #1f8f6b;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    th {
+      background: #f2f3f7;
+    }
+
+    canvas {
+      margin-top: 25px;
+      max-height: 300px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+  </style>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
-<header>
-  <h2>Calciverse</h2>
-</header>
+<header>Calciverse</header>
 
-<section class="hero">
+<div class="hero">
   <h1>PPF Calculator</h1>
-  <p>Calculate your Public Provident Fund maturity and interest earnings.</p>
-</section>
+  <p>Calculate Public Provident Fund maturity and yearly growth.</p>
+</div>
 
-<div class="card-container">
+<div class="card">
 
-  <div class="calculator-card">
-
-    <label>Yearly Investment (₹)</label>
-    <input type="number" id="ppfInvestment" value="100000">
-
-    <label>Interest Rate (%)</label>
-    <input type="number" id="ppfRate" value="7.1">
-
-    <label>Investment Period (Years)</label>
-    <input type="number" id="ppfYears" value="15">
-
-    <button onclick="calculatePPF()">Calculate</button>
-
-    <div id="ppfResult" class="result-box"></div>
-
-    <canvas id="ppfChart"></canvas>
-
-    <div class="table-wrapper">
-      <h3>Year-wise Growth</h3>
-      <table id="ppfTable">
-        <thead>
-          <tr>
-            <th>Year</th>
-            <th>Total Invested</th>
-            <th>Interest Earned</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+  <div class="form-grid">
+    <div>
+      <label>Yearly Investment (₹)</label>
+      <input type="number" id="ppfInvestment" value="100000">
     </div>
 
+    <div>
+      <label>Interest Rate (%)</label>
+      <input type="number" id="ppfRate" value="7.1">
+    </div>
+
+    <div>
+      <label>Investment Period (Years)</label>
+      <input type="number" id="ppfYears" value="15">
+    </div>
   </div>
+
+  <button onclick="calculatePPF()">Calculate</button>
+
+  <div id="ppfResult" class="result-box"></div>
+
+  <canvas id="ppfChart"></canvas>
+
+  <h3>Year-wise Growth</h3>
+  <table id="ppfTable">
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Total Invested</th>
+        <th>Interest Earned</th>
+        <th>Balance</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
 </div>
 
@@ -58,7 +159,73 @@
   © 2026 Calciverse. All Rights Reserved.
 </footer>
 
-<script src="/calciverse/main.js"></script>
+<script>
+let ppfChartInstance = null;
+
+function calculatePPF() {
+
+  const yearlyInvestment = parseFloat(document.getElementById("ppfInvestment").value);
+  const rate = parseFloat(document.getElementById("ppfRate").value) / 100;
+  const years = parseInt(document.getElementById("ppfYears").value);
+
+  if (isNaN(yearlyInvestment) || isNaN(rate) || isNaN(years)) {
+    document.getElementById("ppfResult").innerHTML = "Please fill all fields correctly.";
+    return;
+  }
+
+  let balance = 0;
+  let totalInvested = 0;
+
+  const tableBody = document.querySelector("#ppfTable tbody");
+  tableBody.innerHTML = "";
+
+  for (let year = 1; year <= years; year++) {
+
+    totalInvested += yearlyInvestment;
+    balance = (balance + yearlyInvestment) * (1 + rate);
+
+    const interest = balance - totalInvested;
+
+    const row = `
+      <tr>
+        <td>${year}</td>
+        <td>₹${totalInvested.toFixed(2)}</td>
+        <td>₹${interest.toFixed(2)}</td>
+        <td>₹${balance.toFixed(2)}</td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
+  }
+
+  const totalInterest = balance - totalInvested;
+
+  document.getElementById("ppfResult").innerHTML =
+    "Total Invested: ₹" + totalInvested.toFixed(2) + "<br>" +
+    "Total Interest: ₹" + totalInterest.toFixed(2) + "<br><br>" +
+    "<strong>Maturity Amount: ₹" + balance.toFixed(2) + "</strong>";
+
+  const ctx = document.getElementById("ppfChart");
+
+  if (ppfChartInstance) {
+    ppfChartInstance.destroy();
+  }
+
+  ppfChartInstance = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Invested Amount", "Interest Earned"],
+      datasets: [{
+        data: [totalInvested, totalInterest]
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+</script>
 
 </body>
 </html>
