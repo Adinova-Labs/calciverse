@@ -157,61 +157,52 @@ EMI (Equated Monthly Installment) is the fixed monthly payment you make towards 
 </footer>
 
 <script>
-let chartInstance=null;
+document.getElementById("gstRate").addEventListener("change",function(){
+if(this.value==="custom"){
+document.getElementById("customRateBox").style.display="block";
+}else{
+document.getElementById("customRateBox").style.display="none";
+}
+});
 
-function calculateLoan(){
+function calculateGST(){
+let amount=parseFloat(document.getElementById("amount").value);
+let rate=document.getElementById("gstRate").value;
+let type=document.getElementById("calcType").value;
 
-const loan=parseFloat(document.getElementById("loanAmount").value);
-const annual=parseFloat(document.getElementById("rate").value);
-const years=parseFloat(document.getElementById("years").value);
+if(rate==="custom"){
+rate=parseFloat(document.getElementById("customRate").value);
+}else{
+rate=parseFloat(rate);
+}
 
-if(isNaN(loan)||isNaN(annual)||isNaN(years)){
-document.getElementById("result").innerHTML="Please enter valid values.";
+if(isNaN(amount)||isNaN(rate)){
+alert("Please enter valid values");
 return;
 }
 
-const r=annual/100/12;
-const n=years*12;
+let gstAmount,finalAmount,baseAmount;
 
-const emi=loan*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
-const total=emi*n;
-const interest=total-loan;
-
-document.getElementById("result").innerHTML=
-"Monthly EMI: ₹"+emi.toFixed(2)+"<br>"+
-"Total Interest: ₹"+interest.toFixed(2)+"<br><br>"+
-"<strong>Total Payment: ₹"+total.toFixed(2)+"</strong>";
-
-if(chartInstance){ chartInstance.destroy(); }
-
-chartInstance=new Chart(document.getElementById("chart"),{
-type:"doughnut",
-data:{
-labels:["Principal","Interest"],
-datasets:[{ data:[loan,interest] }]
-},
-options:{ responsive:true, maintainAspectRatio:false }
-});
-
-const tbody=document.querySelector("#schedule tbody");
-tbody.innerHTML="";
-let balance=loan;
-
-for(let m=1;m<=n;m++){
-const int=balance*r;
-const princ=emi-int;
-balance-=princ;
-
-tbody.innerHTML+=`
-<tr>
-<td>${m}</td>
-<td>₹${emi.toFixed(2)}</td>
-<td>₹${princ.toFixed(2)}</td>
-<td>₹${int.toFixed(2)}</td>
-<td>₹${balance>0?balance.toFixed(2):"0.00"}</td>
-</tr>
-`;
+if(type==="add"){
+gstAmount=amount*(rate/100);
+finalAmount=amount+gstAmount;
+baseAmount=amount;
+}else{
+baseAmount=amount/(1+(rate/100));
+gstAmount=amount-baseAmount;
+finalAmount=amount;
 }
+
+let cgst=gstAmount/2;
+let sgst=gstAmount/2;
+
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML=
+"<p><strong>Base Amount:</strong> ₹"+baseAmount.toFixed(2)+"</p>"+
+"<p><strong>GST Amount:</strong> ₹"+gstAmount.toFixed(2)+"</p>"+
+"<p><strong>CGST (Half):</strong> ₹"+cgst.toFixed(2)+"</p>"+
+"<p><strong>SGST (Half):</strong> ₹"+sgst.toFixed(2)+"</p>"+
+"<p><strong>Final Amount:</strong> ₹"+finalAmount.toFixed(2)+"</p>";
 }
 </script>
 
