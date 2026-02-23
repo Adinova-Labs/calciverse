@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>
-    <loc>https://adinova-labs.github.io/calciverse/</loc>
-  </url>
+<url>
+<loc>https://adinova-labs.github.io/calciverse/</loc>
+<priority>1.0</priority>
+</url>
 
-  <url>
-    <loc>https://adinova-labs.github.io/calciverse/calculators/</loc>
-  </url>
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/mortgage-calculator.html</loc>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://adinova-labs.github.io/calciverse/calculators/mortgage-calculator.html</loc>
-  </url>
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/loan-calculator.html</loc>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://adinova-labs.github.io/calciverse/calculators/loan-calculator.html</loc>
-  </url>
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/compound-interest-calculator.html</loc>
+<priority>0.9</priority>
+</url>
 
-  <url>
-    <loc>https://adinova-labs.github.io/calciverse/calculators/compound-interest-calculator.html</loc>
-  </url>
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/sip-calculator.html</loc>
+<priority>0.9</priority>
+</url>
+
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/emi-calculator.html</loc>
+<priority>0.9</priority>
+</url>
+
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/fd-calculator.html</loc>
+<priority>0.9</priority>
+</url>
+
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/ppf-calculator.html</loc>
+<priority>0.9</priority>
+</url>
+
+<url>
+<loc>https://adinova-labs.github.io/calciverse/calculators/gst-calculator.html</loc>
+<priority>0.9</priority>
+</url>
 
 </urlset>
