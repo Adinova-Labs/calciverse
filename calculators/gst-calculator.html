@@ -4,51 +4,115 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GST Calculator India – Add or Remove GST with CGST & SGST Split | Calciverse</title>
+<title>GST Calculator India – Add or Remove GST with CGST & SGST | Calciverse</title>
 
-<meta name="description" content="Free GST Calculator for India. Instantly add or remove GST with automatic CGST and SGST split. Supports 5%, 12%, 18%, 28% slabs. Accurate and fast results.">
+<meta name="description" content="Free GST Calculator for India. Instantly add or remove GST with automatic CGST and SGST split. Supports 5%, 12%, 18%, 28% slabs and custom rates.">
 
-<meta name="keywords" content="GST calculator India, add GST calculator, remove GST calculator, CGST SGST calculator, GST slab calculator, online GST tool India">
-
-<meta name="author" content="Calciverse">
+<meta name="keywords" content="GST calculator India, add GST calculator, remove GST calculator, CGST SGST calculator, GST slab calculator online">
 
 <meta name="robots" content="index, follow">
-
 <link rel="canonical" href="https://adinova-labs.github.io/calciverse/calculators/gst-calculator.html">
 
 <meta property="og:title" content="GST Calculator India – Add or Remove GST">
 <meta property="og:description" content="Calculate GST instantly with CGST & SGST split. Free online GST calculator for India.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://adinova-labs.github.io/calciverse/calculators/gst-calculator.html">
-  <script type="application/ld+json">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "WebApplication",
  "name": "GST Calculator India",
- "url": "https://adinova-labs.github.io/calciverse/calculators/gst-calculator.html",
  "applicationCategory": "FinanceApplication",
- "operatingSystem": "All",
- "description": "Online GST calculator to add or remove GST with automatic CGST and SGST split."
+ "operatingSystem": "All"
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{
+   "@type": "Question",
+   "name": "What is CGST and SGST?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "CGST is Central GST collected by the central government and SGST is State GST collected by the state government."
+   }
+ },{
+   "@type": "Question",
+   "name": "Can I calculate custom GST rate?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes, this GST calculator allows custom GST percentage calculation."
+   }
+ }]
+}
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
 body{background:#f4f6fb;color:#1e293b;}
+
 .navbar{background:#fff;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
 .logo{font-size:20px;font-weight:700;color:#2563eb;}
-.nav-links a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
+nav a{text-decoration:none;margin-left:25px;color:#475569;font-weight:500;}
+nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #0F172A;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #2563EB;
+}
+
 .hero{background:linear-gradient(135deg,#2563eb,#4f46e5);padding:60px 20px;text-align:center;color:#fff;}
 .hero h1{font-size:34px;margin-bottom:10px;}
+
 .container{max-width:800px;margin:auto;padding:40px 20px;}
 .card{background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05);}
+
 .form-group{margin-bottom:18px;}
 label{font-weight:600;font-size:14px;display:block;margin-bottom:6px;}
-input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #e2e8f0;font-size:14px;}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #e2e8f0;}
+
 button{width:100%;padding:14px;border:none;background:#2563eb;color:#fff;font-weight:600;border-radius:12px;cursor:pointer;margin-top:10px;}
+button:hover{background:#1d4ed8;}
+
 .result{background:#ecfdf5;border-left:5px solid #10b981;padding:20px;border-radius:12px;margin-top:20px;}
-footer{background:#0f172a;color:#cbd5e1;padding:30px 8%;text-align:center;margin-top:60px;}
-.ad-top, .ad-bottom {max-width: 1000px;margin: 25px auto;padding: 20px;text-align: center;background: #e9edf5;border-radius: 8px;font-size: 14px;}
+
+.ad-box{background:#eef2ff;padding:20px;text-align:center;border-radius:12px;margin:30px auto;max-width:1000px;}
+
+.seo-content{margin-top:60px;line-height:1.8;color:#475569;}
+
+.footer {
+    background: #0F172A;
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-links {
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: #CBD5E1;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+@media(max-width:768px){
+.container{padding:20px;}
+}
 </style>
 </head>
 
@@ -56,17 +120,19 @@ footer{background:#0f172a;color:#cbd5e1;padding:30px 8%;text-align:center;margin
 
 <div class="navbar">
 <div class="logo">Calciverse</div>
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="calculators.html">Calculators</a>
-</div>
+<nav>
+            <a href="../index.html">Home</a>
+            <a href="#">Calculators</a>
+            <a href="../about.html">About</a>
+        </nav>
 </div>
 
 <div class="hero">
 <h1>GST Calculator</h1>
-<p>Add or Remove GST instantly for India.</p>
+<p>Add or Remove GST instantly for India with CGST & SGST split.</p>
 </div>
-  <div class="ad-top">Ad Space (Top Banner)</div>
+
+<div class="ad-box">Top Ad Space</div>
 
 <div class="container">
 <div class="card">
@@ -100,71 +166,50 @@ footer{background:#0f172a;color:#cbd5e1;padding:30px 8%;text-align:center;margin
 </select>
 </div>
 
-<button onclick="calculateGST()">Calculate</button>
+<button onclick="calculateGST()">Calculate GST</button>
 
 <div class="result" id="result" style="display:none;"></div>
 
 </div>
 </div>
 
-<div class="ad-bottom">Advertisement</div>
+<div class="ad-box">Bottom Ad Space</div>
 
-<section class="faq">
-<div style="margin-top:60px; line-height:1.8; color:#475569;">
-
+<div class="seo-content">
+    
 <h2>What is GST Calculator?</h2>
-<p>GST Calculator is an online financial tool that helps you calculate Goods and Services Tax in India. It allows you to quickly add GST to a base amount or remove GST from a gross amount. The calculator also automatically splits the GST amount into CGST and SGST for easy tax breakdown.</p>
-
-<h2>How to Use GST Calculator?</h2>
-<ul>
-<li>Enter the original amount.</li>
-<li>Select the GST rate (5%, 12%, 18%, 28% or custom).</li>
-<li>Choose whether you want to add or remove GST.</li>
-<li>Click Calculate to get instant results.</li>
-</ul>
+<p>GST Calculator is an online financial tool that helps you calculate Goods and Services Tax in India. It allows you to add GST to a base amount or remove GST from a gross amount instantly.</p>
 
 <h2>GST Slabs in India</h2>
-<p>India follows multiple GST slabs including 5%, 12%, 18%, and 28%. Most goods and services fall under the 18% category. The calculator supports all major slabs along with custom rates.</p>
+<p>India follows GST slabs of 5%, 12%, 18%, and 28%. Most goods and services fall under the 18% slab.</p>
 
-<h2>Formula Used in GST Calculation</h2>
-<p><strong>Adding GST:</strong><br>
-GST Amount = (Original Amount × GST Rate) ÷ 100</p>
+<h2>Formula Used</h2>
+<p><strong>Adding GST:</strong> GST = Amount × Rate / 100</p>
+<p><strong>Removing GST:</strong> Base = Gross / (1 + Rate/100)</p>
 
-<p><strong>Removing GST:</strong><br>
-Base Amount = Gross Amount ÷ (1 + GST Rate/100)</p>
-
-<h2>Benefits of Using Online GST Calculator</h2>
-<ul>
-<li>Instant and accurate tax calculation</li>
-<li>Automatic CGST & SGST split</li>
-<li>Useful for business owners, freelancers, and accountants</li>
-<li>No manual formula calculations required</li>
-</ul>
-
-<h2>Frequently Asked Questions</h2>
-<p><strong>What is CGST and SGST?</strong><br>
-CGST is Central GST collected by the central government, and SGST is State GST collected by the state government.</p>
-
-<p><strong>Can I use this calculator for custom GST rates?</strong><br>
-Yes, you can enter any custom GST percentage for accurate calculation.</p>
+<p>Also try our <a href="income-tax-calculator.html">Income Tax Calculator</a> or 
+<a href="emi-calculator.html">EMI Calculator</a>.</p>
 
 </div>
-</section>
 
-<footer>
-© 2026 Calciverse. All Rights Reserved.
+<footer class="footer">
+    <div class="container">
+        <p>© 2026 Calciverse. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="../about.html">About</a>
+            <a href="../privacy-policy.html">Privacy Policy</a>
+            <a href="../terms.html">Terms</a>
+        </div>
 </footer>
 
 <script>
 document.getElementById("gstRate").addEventListener("change",function(){
-if(this.value==="custom"){
-document.getElementById("customRateBox").style.display="block";
-}else{
-document.getElementById("customRateBox").style.display="none";
-}
+document.getElementById("customRateBox").style.display=
+(this.value==="custom")?"block":"none";
 });
 
 function calculateGST(){
+
 let amount=parseFloat(document.getElementById("amount").value);
 let rate=document.getElementById("gstRate").value;
 let type=document.getElementById("calcType").value;
@@ -175,7 +220,7 @@ rate=parseFloat(document.getElementById("customRate").value);
 rate=parseFloat(rate);
 }
 
-if(isNaN(amount)||isNaN(rate)){
+if(isNaN(amount)||isNaN(rate)||amount<=0||rate<=0){
 alert("Please enter valid values");
 return;
 }
@@ -184,8 +229,8 @@ let gstAmount,finalAmount,baseAmount;
 
 if(type==="add"){
 gstAmount=amount*(rate/100);
-finalAmount=amount+gstAmount;
 baseAmount=amount;
+finalAmount=amount+gstAmount;
 }else{
 baseAmount=amount/(1+(rate/100));
 gstAmount=amount-baseAmount;
@@ -197,11 +242,11 @@ let sgst=gstAmount/2;
 
 document.getElementById("result").style.display="block";
 document.getElementById("result").innerHTML=
-"<p><strong>Base Amount:</strong> ₹"+baseAmount.toFixed(2)+"</p>"+
-"<p><strong>GST Amount:</strong> ₹"+gstAmount.toFixed(2)+"</p>"+
-"<p><strong>CGST (Half):</strong> ₹"+cgst.toFixed(2)+"</p>"+
-"<p><strong>SGST (Half):</strong> ₹"+sgst.toFixed(2)+"</p>"+
-"<p><strong>Final Amount:</strong> ₹"+finalAmount.toFixed(2)+"</p>";
+"<strong>Base Amount:</strong> ₹"+baseAmount.toFixed(2)+"<br>"+
+"<strong>GST Amount:</strong> ₹"+gstAmount.toFixed(2)+"<br>"+
+"<strong>CGST:</strong> ₹"+cgst.toFixed(2)+"<br>"+
+"<strong>SGST:</strong> ₹"+sgst.toFixed(2)+"<br>"+
+"<strong>Final Amount:</strong> ₹"+finalAmount.toFixed(2);
 }
 </script>
 
